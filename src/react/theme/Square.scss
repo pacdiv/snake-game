@@ -1,0 +1,26 @@
+.square {
+  position: absolute;
+  border-radius: 3px;
+
+  &.snake-cell {
+    background-color: white;
+    box-shadow: 0px 0px 6px white;
+    box-sizing: border-box;
+    transition: 150ms;
+    z-index: 2;
+  }
+
+  &.food-cell {
+    z-index: 1;
+
+    &.fruit-cell {
+      background-color: #32CD32;
+      box-shadow: 0px 0px 6px #32CD32;
+    }
+
+    &.poison-cell {
+      background-color: #663399;
+      box-shadow: 0px 0px 6px #663399;
+    }
+  }
+}

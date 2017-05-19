@@ -1,0 +1,26 @@
+{
+  env: {
+    browser: true,
+    es6: true
+  },
+  extends: ["eslint:recommended"],
+  globals: {
+    DOMAIN_NAME: true
+  },
+  parser: "babel-eslint",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    }
+  },
+  plugins: [
+    "react"
+  ],
+  "rules": {
+    "valid-jsdoc": "error",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/prop-types": "error",
+    "react/self-closing-comp": "error"
+  }
+}
