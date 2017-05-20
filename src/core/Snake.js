@@ -14,6 +14,7 @@ class Snake {
 
   constructor(props) {
     this.props = props
+    this.didChangeDirection = false
     this.changeDirection = this.changeDirection.bind(this)
     this.keepMoving = this.keepMoving.bind(this)
     this.sleep = this.sleep.bind(this)
@@ -27,6 +28,10 @@ class Snake {
    * @returns {void}
    */
   changeDirection(event) {
+    if (this.didChangeDirection) {
+      return
+    }
+
     const { direction, health, props: { field } } = this
     const nextDirection = getSnakeNextDirection({
       direction,
@@ -37,6 +42,7 @@ class Snake {
 
     if (nextDirection) {
       this.direction = nextDirection
+      this.didChangeDirection = true
     }
   }
 
@@ -63,6 +69,7 @@ class Snake {
    */
   keepMoving() {
     setTimeout(() => {
+      this.didChangeDirection = false
       if (!_state.moving) {
         return
       }
