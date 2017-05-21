@@ -4,12 +4,13 @@ import { observer } from 'mobx-react'
 import Field from './Field'
 import Food from './Food'
 import Modal from './Modal'
+import ScreenGameZone from './ScreenGameZone'
 import Snake from './Snake'
 
 @observer
 class App extends React.Component {
   render() {
-    const { field, food, running, snakePosition, snakeSpeed } = this.props.appState
+    const { field, fieldHeight, food, running, snakePosition, snakeSpeed } = this.props.appState
 
     return (
       <div>
@@ -17,6 +18,7 @@ class App extends React.Component {
         {food && <Food dimensions={field.square} position={food.position} type={food.type}/>}
         {snakePosition && <Snake dimensions={field.square} position={snakePosition} speed={snakeSpeed}/>}
         {!running && <Modal appState={this.props.appState}/>}
+        <ScreenGameZone fieldHeight={fieldHeight}/>
       </div>
     )
   }

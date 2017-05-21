@@ -14,7 +14,7 @@ const { SNAKE: SNAKE_TYPE, FOOD: FOOD_TYPE } = ITEM_TYPES
 const snakeDefaultPosition = [[ 4, 3 ], [ 3, 3 ], [ 2, 3 ]]
 
 class AppState {
-  field = {}
+  @observable field = {}
   @observable menu = MENU.DEFAULT
   @observable positions = new Map()
   @observable score = 0
@@ -44,7 +44,17 @@ class AppState {
   }
 
   /**
-   * Extrants snake's position from this.position
+   * Extracts the height of the field in pixels
+   *
+   */
+  @computed get fieldHeight() {
+    return this.field.board && this.field.square
+      ? this.field.board.rows * this.field.square.height
+      : 0
+  }
+
+  /**
+   * Extracts snake's position from this.position
    *
    */
   @computed get snakePosition() {

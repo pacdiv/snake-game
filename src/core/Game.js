@@ -102,20 +102,23 @@ const getRequestedSnakeDirectionFromKeyCode = (props) => {
 const getRequestedSnakeDirectionFromTouch = (props) => {
   const { direction, event, field, health } = props
   const { clientX, clientY } = event.changedTouches[0]
-  let requestedDirection
+  let requestedDirection = false
 
   if (direction === WEST || direction === EAST) {
-    requestedDirection = clientY > field.board.rows * field.square.height / 2
-      ? SOUTH
-      : NORTH
+    if (clientY >= field.board.rows * field.square.height * .85) {
+      requestedDirection = SOUTH
+    }
+    if (clientY <= field.board.rows * field.square.height * .15) {
+      requestedDirection = NORTH
+    }
   }
   else if (direction === NORTH || direction === SOUTH) {
-    requestedDirection = clientX > field.board.cols * field.square.height / 2
-      ? EAST
-      : WEST
-  }
-  else {
-    return false
+    if (clientX >= field.board.cols * field.square.height * .85) {
+      requestedDirection = EAST
+    }
+    if (clientX <= field.board.cols * field.square.height * .15) {
+      requestedDirection = WEST
+    }
   }
 
   return health === SNAKE_HEALTHS.HEALTHY
