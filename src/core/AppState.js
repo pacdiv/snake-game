@@ -153,6 +153,11 @@ class AppState {
     this.snake.wakeUp()
   }
 
+  /**
+   * Saves the last made score
+   * @param {string} username The player's username
+   * @returns {void}
+   */
   saveScore(username) {
     this.player = username
     postScore(username, this.score)
