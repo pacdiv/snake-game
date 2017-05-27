@@ -17,6 +17,7 @@ const snakeDefaultPosition = [[ 4, 3 ], [ 3, 3 ], [ 2, 3 ]]
 class AppState {
   @observable field = {}
   @observable menu = MENU.DEFAULT
+  @observable player = ''
   @observable positions = new Map()
   @observable score = 0
   @observable scoreboard = []
@@ -153,6 +154,7 @@ class AppState {
   }
 
   saveScore(username) {
+    this.player = username
     postScore(username, this.score)
       .then(() => {
         this.menu = MENU.SAVEDRANK

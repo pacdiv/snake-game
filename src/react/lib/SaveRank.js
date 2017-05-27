@@ -6,6 +6,10 @@ import '../theme/SaveRank.scss'
 class SaveRank extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      player: this.props.player
+    }
+    this._handleChange = this._handleChange.bind(this)
     this._handleSubmit = this._handleSubmit.bind(this)
   }
 
@@ -13,10 +17,14 @@ class SaveRank extends Component {
     this.textInput.focus()
   }
 
+  _handleChange(event) {
+    event.preventDefault()
+    this.setState({ player: this.textInput.value })
+  }
+
   _handleSubmit(event) {
     event.preventDefault()
     this.props.saveScore(this.textInput.value)
-    this.textInput.value = ''
   }
 
   render() {
@@ -24,9 +32,11 @@ class SaveRank extends Component {
       <div>
         <form id="save-rank" onSubmit={this._handleSubmit}>
           <input
-            type="text"
+            onChange={this._handleChange}
             placeholder="Luke S."
             ref={(input) => { this.textInput = input }}
+            type="text"
+            value={this.state.player}
           />
           <div className="submit">
             <input type="submit" value="SAVE"/>
@@ -42,6 +52,7 @@ class SaveRank extends Component {
 
 SaveRank.propTypes = {
   onSelect: PropTypes.func.isRequired,
+  player: PropTypes.string.isRequired,
   saveScore: PropTypes.func.isRequired,
   score: PropTypes.number.isRequired
 }
