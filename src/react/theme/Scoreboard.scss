@@ -1,0 +1,38 @@
+.scoreboard .board {
+  border: 1px solid #333;
+  border-radius: 4px;
+  height: 50vh;
+  margin: 0 auto;
+  overflow-y: scroll;
+  width: calc(100vw - 50px);
+
+  .item {
+    float: left;
+    line-height: 32px;
+    width: 100%;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #333;
+    }
+
+    div {
+      float: left;
+      text-align: center;
+
+      &.place, &.score {
+        width: 20%;
+      }
+
+      &.player {
+        width: 60%;
+      }
+    }
+
+  }
+}
+
+@media only screen and (min-device-width: 768px) {
+  .scoreboard .board {
+    width: 360px;
+  }
+}

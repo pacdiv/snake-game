@@ -48,11 +48,11 @@ class Modal extends Component {
 
   _getContent() {
     const { switchPage } = this
-    const { menu, rank, saveScore, score } = this.props.appState
+    const { updateScoreboard, menu, rank, saveScore, score, scoreboard } = this.props.appState
 
     switch (menu) {
       case MENU.DEFAULT: return <Menu onSelect={switchPage}/>
-      case MENU.SCOREBOARD: return <Scoreboard onSelect={switchPage}/>
+      case MENU.SCOREBOARD: return <Scoreboard onSelect={switchPage} scoreboard={scoreboard} updateScoreboard={updateScoreboard}/>
       case MENU.HOWTOPLAY: return <Commands onSelect={switchPage}/>
       case MENU.LOSTGAME: return <LostGame onSelect={switchPage} rank={rank} score={score}/>
       case MENU.SAVERANK: return <SaveRank onSelect={switchPage} saveScore={saveScore} score={score}/>

@@ -2,6 +2,7 @@ import { computed, observable } from 'mobx'
 import { getDimensions } from './Board'
 import {
   generateFood,
+  getScoreboard,
   getScoreboardRank,
   getSnakeNextPosition,
   isSnakeConfused,
@@ -18,6 +19,7 @@ class AppState {
   @observable menu = MENU.DEFAULT
   @observable positions = new Map()
   @observable score = 0
+  @observable scoreboard = []
   @observable snake = {}
   @observable rank = 0
   @observable running = false
@@ -31,6 +33,7 @@ class AppState {
     })
     this.positions.set(SNAKE_TYPE, snakeDefaultPosition)
     this.saveScore = this.saveScore.bind(this)
+    this.updateScoreboard = this.updateScoreboard.bind(this)
   }
 
   /**
@@ -168,6 +171,16 @@ class AppState {
     this.snake.didEat(positions.get(FOOD_TYPE).type)
     this.positions.set(FOOD_TYPE, generateFood(board, positions.get(SNAKE_TYPE), running))
     this.snake.improveSpeed()
+  }
+
+  /**
+   * Updates the scoreboard
+   * @returns {void}
+   */
+  updateScoreboard() {
+    getScoreboard().then((scoreboard) => {
+      this.scoreboard = scoreboard.slice()
+    })
   }
 }
 

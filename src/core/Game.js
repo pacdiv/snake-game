@@ -41,6 +41,20 @@ export const generateFood = (field, snakePosition, running) => {
 }
 
 /**
+ * Returns scoreboard
+ * @returns {array} The scoreboard
+ */
+export const getScoreboard = () => {
+  return axios.get(`${DOMAIN_NAME}/games/snake/scoreboard`)
+    .then((response) => {
+      return response.data
+    })
+    .catch(() => {
+      return []
+    })
+}
+
+/**
  * Returns scoreboard rank
  * @param {number} score The score to compare to the scoreboard
  * @returns {number} The user rank
