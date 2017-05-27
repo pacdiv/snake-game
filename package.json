@@ -1,6 +1,6 @@
 {
   "name": "snake-game",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "PACDIV's version of the snake game",
   "main": "index.js",
   "author": "Loïc JEAN-LAMBERT (@pacdiv)",
