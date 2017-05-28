@@ -186,7 +186,22 @@ class AppState {
    */
   updateScoreboard() {
     getScoreboard().then((scoreboard) => {
-      this.scoreboard = scoreboard.slice()
+      let place = 0
+      let currentScore = 0
+      let itemsWithCurrentScore = 1
+
+      this.scoreboard = scoreboard.map((item) => {
+        if (item.score === currentScore) {
+          itemsWithCurrentScore += 1
+        }
+        else {
+          place += itemsWithCurrentScore
+          currentScore = item.score
+          itemsWithCurrentScore = 1
+        }
+
+        return { ...item, place }
+      })
     })
   }
 }

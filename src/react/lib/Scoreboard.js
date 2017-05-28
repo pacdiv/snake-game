@@ -10,12 +10,10 @@ class Scoreboard extends Component {
   }
 
   _getItems() {
-    let place = 0
-
     return this.props.scoreboard.map((item) => {
       return (
         <div className="item">
-          <div className="place">{getOrdinal(++place)}</div>
+          <div className="place">{getOrdinal(item.place)}</div>
           <div className="player">{item.player}</div>
           <div className="score">{item.score}</div>
         </div>
